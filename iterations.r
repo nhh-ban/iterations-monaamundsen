@@ -65,5 +65,3 @@ stations_metadata_df %>%
   theme_classic()
 
 
-
-

@@ -1,3 +1,4 @@
+#TASK 2 Function to make the stations_metadata into a df
 transform_metadata_to_df <- function(stations_metadata) {
   df <- stations_metadata[[1]] |> 
     map(as_tibble) |> 
@@ -10,9 +11,19 @@ transform_metadata_to_df <- function(stations_metadata) {
   return(df)
 }
 
+# TASK 4a Function to return the date-time variable in iso86012
+to_iso8601 <- function(datetime_variable, offset_days) {
+  # Add the offset in days
+  new_datetime <- datetime_variable + days(offset_days)
+  
+  # Convert the datetime to ISO8601 format with "Z" for UTC
+  iso8601_string <- format(new_datetime, "%Y-%m-%dT%H:%M:%SZ")
+  
+  return(iso8601_string)
+}
 
-
-
-
-
+#TASK 5 function
+transform_volumes <- function() {
+  
+}
 
