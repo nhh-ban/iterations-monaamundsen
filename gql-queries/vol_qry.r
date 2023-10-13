@@ -1,5 +1,3 @@
-library(glue)
-
 vol_qry <- function(id, from, to) {
   query <- glue::glue('
     {
@@ -25,6 +23,7 @@ vol_qry <- function(id, from, to) {
   return(query)
 }
 
+#Verifying that it works by calling: 
 GQL(
   vol_qry(
     id=stations_metadata_df$id[1], 
