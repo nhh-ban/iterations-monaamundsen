@@ -23,21 +23,30 @@ to_iso8601 <- function(datetime, offset) {
   return(iso8601_string_formated)
 }
 
-#TASK 5 function
+#TASK 5 function to make sample into a data frame
 transform_volumes <- function(traffic_data) {
+  #indexing to the trafficData list 
   df <- traffic_data$trafficData[[1]] |>
+    #making it into a tibble 
     map(as_tibble) |>
     list_rbind() |>
+    #First unnesting to get to the "node" part 
     unnest_wider(edges) |>
+    #unnesting again to get "to", "from", and "total"
     unnest_wider(node) |>
+    #making from and to into dttm 
     mutate(from = map_chr(from, 1, .default = NA_character_), 
            to = map_chr(to, 1, .default = NA_character_)) |> 
     mutate(from = as_datetime(from, tz = "UTC"), 
            to = as_datetime(to, tz = "UTC")) |>
+    #Every row is a "named list", so using map to unlist every row 
     mutate(total = map(total, unlist)) |>
+    #using map_dbl to extract the volume for each row in total and making it 
+    #into a double value
     mutate(
       volume = map_dbl(total, "volumeNumbers.volume")
     ) |>
+    #removing total column as i dont need it 
     select(-total)
   
   return(df)

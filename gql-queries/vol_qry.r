@@ -32,3 +32,5 @@ GQL(
   ),
   .url = configs$vegvesen_url
 )
+
+
