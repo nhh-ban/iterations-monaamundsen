@@ -5,6 +5,9 @@
 # All tests are packed in a function test_stations_metadata that apples
 # all the aforementioned tests
 
+#This function makes a vector of the colnames we want in the df and checks if 
+# the colnames is in the df. If they are, it returns TRUE. If it is TRUE, 
+#it returns "PASS", else "FAIL" 
 test_stations_metadata_colnames <-
   function(df) {
     
@@ -17,6 +20,8 @@ test_stations_metadata_colnames <-
     }
   }
 
+#This function checks if the number of rows is between 5000 and 10000
+#and if this condition is TRUE it returns PASS, else/elsif FAIL 
 test_stations_metadata_nrows <-
   function(df) {
     
@@ -32,6 +37,8 @@ test_stations_metadata_nrows <-
     }
   }
 
+#This functions checks if the columns are of the correct "type", and also prints
+# PASS/FAIL
 test_stations_metadata_coltypes <-
   function(df) {
     expected_coltypes <-
@@ -44,7 +51,9 @@ test_stations_metadata_coltypes <-
       print("FAIL: Columns do not have the correct specification")
     }
   }
-  
+
+# This function sets maximum missing values to 200 and checks if the number
+#of missing values is below this. Then it prints "PASS", else prints "FAIL"
 test_stations_metadata_nmissing <-
   function(df) {
     max_miss_vals <- 200
@@ -56,6 +65,7 @@ test_stations_metadata_nmissing <-
     }
   }
 
+#This function checks if the timezone is right and prints "PASS"/"FAIL"
 test_stations_metadata_latestdata_timezone <-
   function(df) {
     
@@ -66,7 +76,7 @@ test_stations_metadata_latestdata_timezone <-
     }
   }
 
-
+#This function combines all the function above 
 test_stations_metadata <- 
   function(df){
     test_stations_metadata_colnames(df)
